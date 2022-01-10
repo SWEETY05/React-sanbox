@@ -3,9 +3,11 @@ import { useState } from "react";
 const User = () => {
   const [flag, setFlag] = useState(false);
   const [color, setColor] = useState("red");
-  const [obj, setObj] = useState("");
+  const [city, setCity] = useState("");
   const [name, setName] = useState("");
   const [id, setId] = useState("");
+  const [salary, setSalary] = useState("");
+
   const [user, setUser] = useState([
     {
       name: "Ram",
@@ -35,15 +37,28 @@ const User = () => {
 
     // console.log(e);
   };
+  const cityClick = (e) => {
+    setCity(e.target.value);
+  };
+  const salaryClick = (e) => {
+    setSalary(e.target.value);
+  };
+
   const addUser = () => {
     // const  newuser = [...user,{name}]
-    setUser([...user, { name, id }]);
+    // setUser([ ...user,{ name, id, salary, city }]);
     // setUser([...user, {temp}]);
-
     //  setUser(prevState => ([  ...prevState,{ name }]));
 
+    // If you really want to mutate and set new state, you have to clone using JSON.parse,
+    //  JSON.strigify, you can't create a real clone otherwise
+    const e = { name, id, salary, city };
+    const newuser = JSON.parse(JSON.stringify(user));
+    newuser.push(e);
+    setUser(newuser);
     console.log(user);
   };
+
   return (
     <div className="user">
       <h4>UserList Detail:</h4>
@@ -61,11 +76,11 @@ const User = () => {
         </div>
         <div>
           Salary:
-          <input type="text" value={id} onChange={idClick} />
+          <input type="text" value={salary} onChange={salaryClick} />
         </div>
         <div>
           City:
-          <input type="text" value={id} onChange={idClick} />
+          <input type="text" value={city} onChange={cityClick} />
         </div>
 
         {/*<input type="text" value={salary} onChange={onChange} />
@@ -76,7 +91,7 @@ const User = () => {
         <li>
           {user.map((u) => (
             <h3 key={u.id}>
-              {u.name} {u.id}
+              {u.name} {u.id} {u.city} {u.salary}
             </h3>
           ))}
         </li>

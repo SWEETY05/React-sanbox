@@ -5,7 +5,6 @@ export default function App() {
   return (
     <div className="App">
       <User />
-      helo style
     </div>
   );
 }
