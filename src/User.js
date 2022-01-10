@@ -53,12 +53,21 @@ const User = () => {
       </button>
       <form className="form">
         <div>
-          Name: <input type="text" value={name} onChange={nameClick} />
-        </div>
-        <div>
           Id:
           <input type="text" value={id} onChange={idClick} />
         </div>
+        <div className="child">
+          Name: <input type="text" value={name} onChange={nameClick} />
+        </div>
+        <div>
+          Salary:
+          <input type="text" value={id} onChange={idClick} />
+        </div>
+        <div>
+          City:
+          <input type="text" value={id} onChange={idClick} />
+        </div>
+
         {/*<input type="text" value={salary} onChange={onChange} />
       <input type="text" value={city} onChange={onChange} />  */}
       </form>

@@ -5,4 +5,9 @@
 .form {
   border: 2px solid black;
   padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.child {
+  padding: 2px;
 }
