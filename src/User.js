@@ -51,7 +51,7 @@ const User = () => {
       <button onClick={onclick} style={{ backgroundColor: color }}>
         show user
       </button>
-      <form>
+      <form className="form">
         <div>
           Name: <input type="text" value={name} onChange={nameClick} />
         </div>
