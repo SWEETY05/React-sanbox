@@ -45,17 +45,18 @@ const User = () => {
   };
 
   const addUser = () => {
+    const e = { name, id, salary, city };
     // const  newuser = [...user,{name}]
     // setUser([ ...user,{ name, id, salary, city }]);
     // setUser([...user, {temp}]);
-    //  setUser(prevState => ([  ...prevState,{ name }]));
-
+    setUser((prevState) => [...prevState, e]);
+    //setUser("");
     // If you really want to mutate and set new state, you have to clone using JSON.parse,
     //  JSON.strigify, you can't create a real clone otherwise
-    const e = { name, id, salary, city };
-    const newuser = JSON.parse(JSON.stringify(user));
-    newuser.push(e);
-    setUser(newuser);
+    // const e = { name, id, salary, city };
+    // const newuser = JSON.parse(JSON.stringify(user));
+    // newuser.push(e);
+    // setUser(newuser);
     console.log(user);
   };
 
@@ -89,8 +90,8 @@ const User = () => {
       <button onClick={addUser}>AddNewUser</button>
       {flag && (
         <li>
-          {user.map((u) => (
-            <h3 key={u.id}>
+          {user.map((u, index) => (
+            <h3 key={index}>
               {u.name} {u.id} {u.city} {u.salary}
             </h3>
           ))}
