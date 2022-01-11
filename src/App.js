@@ -1,10 +1,15 @@
+import UserReducers from "./UserReducers";
 import "./styles.css";
-import User from "./User";
+// import User from "./User";
 
-export default function App() {
+function App() {
   return (
     <div className="App">
-      <User />
+      {/* <User /> */}
+
+      <UserReducers />
     </div>
   );
 }
+
+export default App;

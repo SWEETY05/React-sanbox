@@ -26,7 +26,8 @@ const User = () => {
   // const temp =[ {name,id} ]
 
   const onclick = () => {
-    setFlag(!flag), setColor(flag ? "green" : "gray");
+    setFlag(!flag);
+    setColor(flag ? "green" : "gray");
   };
   const nameClick = (e) => {
     setName(e.target.value);
