@@ -1,6 +1,6 @@
-import { useReducer } from "react";
-
-const UserReducers = () => {
+import { useReducer, useState } from "react";
+const ReducerForm = () => {
+  const [input, setInput] = useState();
   const initialstate = [
     {
       name: "Ram",
@@ -18,8 +18,8 @@ const UserReducers = () => {
   const reducer = (state, action) => {
     switch (action.type) {
       case "ADDUSER":
-        console.log(...state, action.user);
-        return [...state, action.user];
+        console.log(...state, { name: action.payload });
+        return [...state, action.payload];
       default:
         return state;
     }
@@ -27,49 +27,43 @@ const UserReducers = () => {
 
   const [state, dispatch] = useReducer(reducer, initialstate);
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: "ADDUSER",
+      payload: input
+    });
+  };
   const handleChange = (e) => {
-    const { name } = e.target.value;
-    dispatch({ type: "ADDUSER" });
+    setInput(e.target.value);
   };
   return (
     <>
-      {/* <button
-        onClick={() =>
-          dispatch({
-            type: "ADDUSER",
-            user: {
-              name: "John Smith",
-              id: 3,
-              salary: "50 lac",
-              city: "Pune"
-            }
-          })
-        }
-      >
-        AddNewUser
-      </button> */}
-
       <form onSubmit={handleSubmit}>
         <div className="form-group">
+          name:{" "}
           <input
             type="text"
             name="name"
-            value={""}
+            value={input}
             onChange={handleChange}
             className="form-control"
-            placeholder="Enter Name "
+            placeholder="Enter Name... "
           />
         </div>
+
+        <button type="submit" className="btn btn-primary btn-block">
+          submit
+        </button>
       </form>
 
-      <h1>
-        {state.map((name) => (
-          <p key={name.id}>{name.name}</p>
+      {/* <h1>
+        {state.map((n) => (
+          <p key={n.id} [n]</p>
         ))}
-      </h1>
+      </h1> */}
     </>
   );
 };
 
-export default UserReducers;
+export default ReducerForm;

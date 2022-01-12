@@ -1,5 +1,7 @@
-import UserReducers from "./UserReducers";
+// import UserReducers from "./UserReducers";
 import "./styles.css";
+// import ReducerForm from "./ReducerForm";
+import FormNew from "./FormNew";
 // import User from "./User";
 
 function App() {
@@ -7,7 +9,9 @@ function App() {
     <div className="App">
       {/* <User /> */}
 
-      <UserReducers />
+      {/* <UserReducers /> */}
+      <FormNew />
+      {/* <ReducerForm /> */}
     </div>
   );
 }
