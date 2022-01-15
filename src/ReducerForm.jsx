@@ -1,6 +1,8 @@
 import { useReducer, useState } from "react";
+
 const ReducerForm = () => {
-  const [input, setInput] = useState();
+  const [input, setInput] = useState("");
+  const [id, setId] = useState();
   const initialstate = [
     {
       name: "Ram",
@@ -15,11 +17,12 @@ const ReducerForm = () => {
       city: "Nashik"
     }
   ];
+  //const data = { input, id };
   const reducer = (state, action) => {
     switch (action.type) {
       case "ADDUSER":
-        console.log(...state, { name: action.payload });
-        return [...state, action.payload];
+        return [...state, { ...action.payload }];
+
       default:
         return state;
     }
@@ -29,14 +32,23 @@ const ReducerForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const data = {
+      input: input,
+      id: id
+    };
     dispatch({
       type: "ADDUSER",
-      payload: input
+      payload: data
     });
   };
+
   const handleChange = (e) => {
     setInput(e.target.value);
   };
+  const handleChangeId = (e) => {
+    setId(e.target.value);
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -50,6 +62,15 @@ const ReducerForm = () => {
             className="form-control"
             placeholder="Enter Name... "
           />
+          id :{" "}
+          <input
+            type="text"
+            name="id"
+            value={id}
+            onChange={handleChangeId}
+            className="form-control"
+            placeholder="Enter Id... "
+          />
         </div>
 
         <button type="submit" className="btn btn-primary btn-block">
@@ -57,11 +78,11 @@ const ReducerForm = () => {
         </button>
       </form>
 
-      {/* <h1>
-        {state.map((n) => (
-          <p key={n.id} [n]</p>
-        ))}
-      </h1> */}
+      {state.map((e, index) => (
+        <h2 key={index}>
+          {e.name} {e.id}
+        </h2>
+      ))}
     </>
   );
 };

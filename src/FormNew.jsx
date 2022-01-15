@@ -1,42 +1,47 @@
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 import { useForm } from "react-hook-form";
 const FormNew = () => {
-  const [user, setUser] = useState();
-
   const { register, handleSubmit } = useForm([]);
-  //let data1 = [];
-  const onSubmit = (data) => {
-    let data1 = [JSON.parse(JSON.stringify(data))];
-    setUser(data1);
-    console.log(user);
-  };
 
-  const initialState = {};
-  const Reducer = (state, action) => {
+  const initialState = [
+    {
+      id: 1,
+      name: "sawlikar use form",
+      age: 27
+    }
+  ];
+  const reducer = (state, action) => {
     switch (action.type) {
-      case "SHOWUSER":
-        return [...state, { user }];
+      case "ADDUSER":
+        return [...state, action.payload];
+
       default:
         return state;
+        console.log(state);
     }
   };
 
-  const [state, dispatch] = useReducer(Reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const onClick = () => {
-    dispatch({ type: "SHOWUSER", payload: user });
-    return user.map((u) => <h3>{u.name}</h3>);
+  const submit = (data) => {
+    dispatch({ type: "ADDUSER", payload: data });
   };
+
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      {state.map((s, index) => (
+        <div key={index}>
+          <h3>{s.id}</h3>
+          <h3>{s.age}</h3>
+          <h3>{s.name}</h3>
+        </div>
+      ))}
+
+      <form onSubmit={handleSubmit(submit)}>
         <input placeholder="id" {...register("id")} />
         <input placeholder="age" {...register("age")} />
         <input placeholder="name" {...register("name")} />
-
-        <input type="submit" />
       </form>
-      <button onClick={onClick}>SHOWUsers</button>
     </>
   );
 };
