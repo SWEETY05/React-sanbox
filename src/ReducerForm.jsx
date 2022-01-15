@@ -2,7 +2,7 @@ import { useReducer, useState } from "react";
 
 const ReducerForm = () => {
   const [input, setInput] = useState("");
-  const [id, setId] = useState();
+  const [id, setId] = useState(0);
   const initialstate = [
     {
       name: "Ram",
@@ -21,8 +21,8 @@ const ReducerForm = () => {
   const reducer = (state, action) => {
     switch (action.type) {
       case "ADDUSER":
-        return [...state, { ...action.payload }];
-
+        console.log(action.payload);
+        return [...state, ...action.payload];
       default:
         return state;
     }
@@ -32,10 +32,12 @@ const ReducerForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
-      input: input,
-      id: id
-    };
+    const data = [
+      {
+        name: input,
+        id: id
+      }
+    ];
     dispatch({
       type: "ADDUSER",
       payload: data
