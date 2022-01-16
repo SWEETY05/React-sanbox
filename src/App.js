@@ -1,7 +1,8 @@
 // import UserReducers from "./UserReducers";
 //import FetchApi from "./FetchApi";
 import "./styles.css";
-import ReducerForm from "./ReducerForm";
+//import ReducerForm from "./ReducerForm";
+import A from "./context/A";
 //import FormNew from "./FormNew";
 // import User from "./User";
 // import GeneralForm from "./GeneralForm";
@@ -12,10 +13,11 @@ function App() {
       {/* <User /> */}
       {/* <UserReducers /> */}
       {/* <FormNew /> */}
-      <ReducerForm />
+      {/* <ReducerForm /> */}
       {/* <GeneralForm /> */}
       {/* <AppendUser /> */}
       {/* <FetchApi /> */}
+      <A />
     </div>
   );
 }
